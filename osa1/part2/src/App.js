@@ -67,17 +67,35 @@ const App = () => {
 
   console.log(good, neutral, bad)
 
+  let noStats = false;
+  if (good === 0 && neutral === 0 && bad === 0) {
+    noStats = true;
+  }
+
+  if (noStats) {
   return (
-    <div>
-      <h1>give feedback</h1>
-      <Button handleClick={goodReview} text="good"/>
-      <Button handleClick={neutralReview} text="neutral"/>
-      <Button handleClick={badReview} text="bad"/>
-      <h2>Statistics</h2>
-      <Display reviewProps={reviews}/>
-      <Statistics statProps={reviews}/>
-    </div>
-  )
+      <div>
+        <h1>give feedback</h1>
+        <Button handleClick={goodReview} text="good"/>
+        <Button handleClick={neutralReview} text="neutral"/>
+        <Button handleClick={badReview} text="bad"/>
+        <h2>Statistics</h2>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+
+  return (
+      <div>
+        <h1>give feedback</h1>
+        <Button handleClick={goodReview} text="good"/>
+        <Button handleClick={neutralReview} text="neutral"/>
+        <Button handleClick={badReview} text="bad"/>
+        <h2>Statistics</h2>
+        <Display reviewProps={reviews}/>
+        <Statistics statProps={reviews}/>
+      </div>
+    )
 }
 
 export default App
