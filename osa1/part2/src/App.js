@@ -9,14 +9,33 @@ const Button = (props) => {
 }
 
 const Display = (props) => {
-  const allReviews = props.reviewProps
-  console.log(allReviews)
+  const goodies = props.reviewProps.goodReviews
+  const neutries = props.reviewProps.neutralReviews
+  const baddies = props.reviewProps.badReviews
 
   return (
     <div>
-      <p>good {allReviews.goodReviews}</p>
-      <p>neutral {allReviews.neutralReviews}</p>
-      <p>bad {allReviews.badReviews}</p>
+      <p>good {goodies}</p>
+      <p>neutral {neutries}</p>
+      <p>bad {baddies}</p>
+    </div>
+  )
+}
+
+const Statistics = (props) => {
+  const goodies = props.statProps.goodReviews
+  const neutries = props.statProps.neutralReviews
+  const baddies = props.statProps.badReviews
+
+  const total = goodies + neutries + baddies
+  const average = (goodies + neutries*0 + baddies*-1)/total
+  const positive = goodies/total*100
+
+  return (
+    <div>
+      <p>all {total}</p>
+      <p>average {average}</p>
+      <p>positive {positive}%</p>
     </div>
   )
 }
@@ -56,6 +75,7 @@ const App = () => {
       <Button handleClick={badReview} text="bad"/>
       <h2>Statistics</h2>
       <Display reviewProps={reviews}/>
+      <Statistics statProps={reviews}/>
     </div>
   )
 }
