@@ -19,17 +19,28 @@ const Statistics = (props) => {
 
   return (
     <div>
+      <table>
       <StatisticsLine text="good" value={goodies} />
       <StatisticsLine text="neutral" value={neutries} />
       <StatisticsLine text="bad" value={baddies} />
       <StatisticsLine text="total" value={total} />
       <StatisticsLine text="average" value={average} />
       <StatisticsLine text="positive" value={positive} />
+      </table>
     </div>
   )
 }
 
-const StatisticsLine = (props) => <p>{props.text} {props.value}</p>
+const StatisticsLine = (props) => {
+  return (
+  <tbody>
+    <tr>
+      <td>{props.text}</td>
+      <td>{props.value}</td>
+    </tr>
+  </tbody>
+  )
+}
 
 
 const App = () => {
