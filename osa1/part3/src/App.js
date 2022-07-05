@@ -17,40 +17,58 @@ const App = () => {
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when dianosing patients.'
-  ]
+  ];
    
-  const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState([])
+  const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState([]);
 
 
   if (votes.length === 0) {
-    const initialVotes = Array(anecdotes.length).fill(0)
-    setVotes(initialVotes)
+    const initialVotes = Array(anecdotes.length).fill(0);
+    setVotes(initialVotes);
   }
 
   const voteAnecdote = () => {
-    const copy = [...votes]
-    copy[selected] += 1
-    setVotes(copy)
+    const copy = [...votes];
+    copy[selected] += 1;
+    setVotes(copy);
   }
 
   const updateAnecdote = () => {
     const max = anecdotes.length
     const choice = Math.floor(Math.random() * max);
-    setSelected(choice)
+    setSelected(choice);
   }
 
-  console.log(votes)
-  console.log(selected)
+  const getMostVoted = () => {
+    if (!votes.some(item => item !== 0)) {
+      return (
+        <div>No votes given yet</div>
+        )
+    };
+
+    const mostVoted = Math.max(...votes);
+    const indexOfMostVoted = votes.indexOf(mostVoted);
+
+    return (
+      <div>
+        <div>{anecdotes[indexOfMostVoted]}</div>
+        <div>{votes[indexOfMostVoted]}</div>
+      </div>
+    );
+  }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <div>{anecdotes[selected]}</div>
       <div>has {votes[selected]} votes</div>
       <Button handleClick={updateAnecdote} text={'next anecdote'}/>
       <Button handleClick={voteAnecdote} text={'vote'}/>
+      <h1>Anecdote with most votes</h1>
+      <div>{getMostVoted()}</div>
     </div>
   )
 }
 
-export default App
+export default App;
