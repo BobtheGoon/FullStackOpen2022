@@ -3,7 +3,7 @@ import { useState } from 'react'
 const Button = (props) => {
   return(
     <div>
-      <button onClick={props.handleClick}>next anecdote</button>
+      <button onClick={props.handleClick}>{props.text}</button>
     </div>
   )
 }
@@ -20,6 +20,19 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState([])
+
+
+  if (votes.length === 0) {
+    const initialVotes = Array(anecdotes.length).fill(0)
+    setVotes(initialVotes)
+  }
+
+  const voteAnecdote = () => {
+    const copy = [...votes]
+    copy[selected] += 1
+    setVotes(copy)
+  }
 
   const updateAnecdote = () => {
     const max = anecdotes.length
@@ -27,10 +40,15 @@ const App = () => {
     setSelected(choice)
   }
 
+  console.log(votes)
+  console.log(selected)
+
   return (
     <div>
-      {anecdotes[selected]}
-      <Button handleClick={updateAnecdote}/>
+      <div>{anecdotes[selected]}</div>
+      <div>has {votes[selected]} votes</div>
+      <Button handleClick={updateAnecdote} text={'next anecdote'}/>
+      <Button handleClick={voteAnecdote} text={'vote'}/>
     </div>
   )
 }
