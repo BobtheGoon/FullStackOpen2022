@@ -1,7 +1,18 @@
-const Total = (props) => {
+const Total = ({parts}) => {
+    console.log(parts)
+    
+    let total = 0
+
+    parts.forEach(element => {
+      total += element.exercises
+    });
+
+    //const total = parts.reduce((current, previous) => current+previous)
+    //console.log(total)
+    
     return (
       <div>
-        <p>Number of exercises {props.parts.parts[0].exercises + props.parts.parts[1].exercises + props.parts.parts[2].exercises}</p>
+       <b>total of {total} exercises</b>
       </div>
     )
   }

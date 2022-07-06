@@ -8,10 +8,9 @@ const Course = ({course}) => {
         <div>
             <Header course={course} />
             <Content parts={course.parts} />
+            <Total parts={course.parts}/>
         </div>
     )
 }
-
-//            <Total parts={course}/>
 
 export default Course

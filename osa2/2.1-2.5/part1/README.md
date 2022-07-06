@@ -1,1 +1,1 @@
-This is the second week of FullStackOpen 2022. This is the first part which contains the "course" project.
+This is the third week of FullStackOpen 2022. This is the first part which contains the continuation of the course list assignment.
