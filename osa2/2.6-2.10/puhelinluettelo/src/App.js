@@ -3,35 +3,41 @@ import { useState } from 'react'
 import Persons from './components/Persons'
 
 const App = () => {
+
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas' }
   ]) 
+
   const [newName, setNewName] = useState('')
 
   const addPerson = (e) => {
     e.preventDefault()
 
-    //if (persons.map(person => person.name === newName)) {console.log('exists')}
-    //tämä koodi palauttaa aina true, korjaa
+    const found = persons.find(person => newName === person.name);
+
+    if (found) {
+      alert(`${newName} is already added to phonebook`)
+      return
+    }
 
     const newPerson = {
       name: newName
     }
 
-    console.log(newPerson)
     setPersons(persons.concat(newPerson))
     setNewName('')
   }
+
 
   const handleInputChange = (e) => {
     setNewName(e.target.value)
   }
 
-  console.log(persons)
 
   return (
     <div>
       <h2>Phonebook</h2>
+
       <form onSubmit={addPerson}>
         <div>
           name: <input value={newName} onChange={handleInputChange}/>
@@ -40,8 +46,10 @@ const App = () => {
           <button type="submit">add</button>
         </div>
       </form>
+
       <h2>Numbers</h2>
       <Persons persons={persons}/>
+
     </div>
   )
 
