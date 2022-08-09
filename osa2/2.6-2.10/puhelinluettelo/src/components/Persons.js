@@ -1,15 +1,24 @@
 import number from './Number'
 
 const Persons = ({persons}) => {
+
+    const content = persons.map(person => 
+        (person.number) ?
+            <div key={person.name}>
+                {person.name} {person.number}
+            </div>
+            :
+            <div key={person.name}>
+                {person.name}
+            </div>
+        )
+    
     return (
         <div>
-            {persons.map(person => 
-                <div key={person.name}>
-                    {person.name}
-                </div>
-                )}
-        </div>
-    )
-}
+            {content}
+        </div>    
+        )
+    }
+
 
 export default Persons
