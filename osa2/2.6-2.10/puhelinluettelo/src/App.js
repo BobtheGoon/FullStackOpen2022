@@ -5,11 +5,15 @@ import Persons from './components/Persons'
 const App = () => {
 
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ]) 
 
   const [newName, setNewName] = useState('')
   const [newNumber, setNumber] = useState('')
+  const [searchChars, setSearch] = useState('')
 
 
   const addPerson = (e) => {
@@ -39,21 +43,52 @@ const App = () => {
   }
 
 
+  const searchPersons = (searchChars) => {
+    const searchResult = persons.filter(person => person.name.toLowerCase().includes(searchChars.toLowerCase()));
+    return searchResult
+  }
+
+
   //Update name on change
   const handleNameChange = (e) => {
     setNewName(e.target.value)
   }
+
 
   //Update number on change
   const handleNumberChange = (e) => {
     setNumber(e.target.value)
   }
 
-  console.log(persons)
+
+  //Update search on change
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+
+  let personsNumbers = 
+  <div>
+    <Persons persons={persons}/>
+  </div>
+
+
+  if (searchChars) {
+    const foundPersons = searchPersons(searchChars)
+    personsNumbers = 
+      <div>
+        <Persons persons={foundPersons}/>
+      </div>
+  }
+
 
   return (
     <div>
       <h2>Phonebook</h2>
+
+      <div>filter shown with <input value={searchChars} onChange={handleSearchChange}></input></div>
+
+      <h2>add a new</h2>
 
       <form onSubmit={addPerson}>
         <div>name: <input value={newName} onChange={handleNameChange}/></div>
@@ -62,7 +97,9 @@ const App = () => {
       </form>
 
       <h2>Numbers</h2>
-      <Persons persons={persons}/>
+      <div>
+        {personsNumbers}
+      </div>
 
     </div>
   )
