@@ -1,5 +1,3 @@
-import number from './Number'
-
 const Persons = ({persons}) => {
 
     const content = persons.map(person => 
