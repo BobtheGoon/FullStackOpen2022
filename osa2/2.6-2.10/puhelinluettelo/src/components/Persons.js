@@ -1,5 +1,4 @@
 const Persons = ({persons}) => {
-
     const content = persons.map(person => 
         (person.number) ?
             <div key={person.name}>
@@ -17,6 +16,5 @@ const Persons = ({persons}) => {
         </div>    
         )
     }
-
 
 export default Persons
