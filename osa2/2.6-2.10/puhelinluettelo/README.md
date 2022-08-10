@@ -1,1 +1,1 @@
-This is Full Stack Open 2022 exercises 2.1-2.5
+This is Full Stack Open 2022 exercises 2.6-2.10
