@@ -24,12 +24,9 @@ const App = () => {
     setSearch(e.target.value)
   }
 
-  console.log(data)
-
   return(
     <div>
       <Filter searchChars={searchChars} change={handleSearchChange}></Filter>
-
       <DisplayCountries searchChars={searchChars} countries={data}></DisplayCountries>
     </div>
   )

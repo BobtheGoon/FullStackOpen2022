@@ -1,3 +1,5 @@
+import DisplayCountry from "./DisplayCountry";
+
 const DisplayCountries = ({searchChars, countries}) => {
 
     //Filter over the countries data and find matches corresponding to search charecters
@@ -19,33 +21,17 @@ const DisplayCountries = ({searchChars, countries}) => {
           )
         }
 
+      //If we find only 1 country, display its information such as name, capita, area, languages, flag
       else if (foundCountries.length === 1) {
-        const foundCountry = foundCountries[0]
-
-        const foundLanguages = []
-        Object.keys(foundCountry.languages).forEach(language => foundLanguages.push(foundCountry.languages[language]))
-
-        return (
-            <div>
-              <h2>{foundCountry.name.common}</h2>
-              <p>capital {foundCountry.capital}</p>
-              <p>area {foundCountry.area}</p>
-
-              <h3>languages</h3>
-              <ul>
-                {foundLanguages.map(language => <li key={language}>{language}</li>)}
-              </ul>
-
-              <img src={foundCountry.flags['png']}></img>
-
-            </div>
-          )
+        return <DisplayCountry country={foundCountries[0]}></DisplayCountry>
       }
 
+      //If we find more than 10 countries, ask for more filtering
       else if (foundCountries.length > 10) {
         return <div>Too many matches, specify another filter</div>
         }
 
+      //Handle no matches found
       else {
         return <div>No matches found</div>
         }
