@@ -1,4 +1,4 @@
-const DisplayCountry = ({country}) => {
+const Country = ({country}) => {
 
     const foundLanguages = []
     Object.keys(country.languages).forEach(language => foundLanguages.push(country.languages[language]))
@@ -20,4 +20,4 @@ const DisplayCountry = ({country}) => {
         )
     }
 
-export default DisplayCountry
+export default Country
