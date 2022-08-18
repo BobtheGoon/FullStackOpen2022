@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import root from './index.js'
 import Filter from './components/Filter'
 import DisplayCountries from './components/DisplayCountries'
 import Country from './components/Country'
@@ -23,14 +22,10 @@ const App = () => {
 
 
   const showCountry = (country) => {
+    const countryData = []
+    countryData.push(country)
     console.log(country)
-
-    root.render(
-      <div>
-        <Filter searchChars={searchChars} change={handleSearchChange}></Filter>
-        <Country country={country}></Country>
-      </div>
-      );
+    setData(countryData)
     }
 
   //Update search on change
