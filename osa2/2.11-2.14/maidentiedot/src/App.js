@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import Filter from './components/Filter'
 import DisplayCountries from './components/DisplayCountries'
-import Country from './components/Country'
 
 const COUNTRY_URL = 'https://restcountries.com/v3.1/all'
 
@@ -13,6 +12,14 @@ const App = () => {
   const [searchChars, setSearch] = useState('')
 
 
+  const showCountry = (country) => {
+    const countryData = []
+    countryData.push(country)
+    console.log(country)
+    setData(countryData)
+    }
+
+
   useEffect(() =>{
     axios
     .get(COUNTRY_URL)
@@ -20,13 +27,6 @@ const App = () => {
       setData(response.data)
       })}, [])
 
-
-  const showCountry = (country) => {
-    const countryData = []
-    countryData.push(country)
-    console.log(country)
-    setData(countryData)
-    }
 
   //Update search on change
   const handleSearchChange = (e) => {

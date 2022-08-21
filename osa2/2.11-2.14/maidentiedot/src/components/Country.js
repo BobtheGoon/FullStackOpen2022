@@ -1,3 +1,5 @@
+import Weather from "./Weather"
+
 const Country = ({country}) => {
 
     const foundLanguages = []
@@ -15,6 +17,8 @@ const Country = ({country}) => {
         </ul>
 
         <img src={country.flags['png']}></img>
+
+        <Weather capital={country.capital}></Weather>
 
         </div>
         )
