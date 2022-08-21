@@ -1,1 +1,0 @@
-Exercises for FullStackOpen 2022 2.12-2.14
