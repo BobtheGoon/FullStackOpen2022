@@ -1,5 +1,6 @@
 import Persons from "./Persons";
 
+
 const DisplayPersons = ({searchChars, persons}) => {
     const searchPersons = (searchChars) => {
         const searchResult = persons.filter(person => person.name.toLowerCase().includes(searchChars.toLowerCase()));
