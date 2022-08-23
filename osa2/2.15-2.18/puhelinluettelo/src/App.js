@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import './index.css'
 import personService from './services/personsData'
 
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import DisplayPersons from './components/DisplayPersons'
+import Notification from './components/Notification'
 
 const App = () => {
 
@@ -13,6 +15,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNumber] = useState('')
   const [searchChars, setSearch] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     axios
@@ -54,6 +57,11 @@ const App = () => {
         setNumber('')
         }
       )
+
+      setErrorMessage(`Added ${newPerson.name}`)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
   }
 
 
@@ -79,7 +87,9 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-      <Filter searchChars={searchChars} change={handleSearchChange}/>
+      <Notification message={errorMessage} />
+
+      <Filter searchChars={searchChars} change={handleSearchChange} />
 
       <h2>add a new</h2>
 
@@ -88,12 +98,12 @@ const App = () => {
         newName={newName}
         newNumber={newNumber}
         handleNameChange={handleNameChange}
-        handleNumberChange={handleNumberChange}/>
+        handleNumberChange={handleNumberChange} />
 
 
       <h2>Numbers</h2>
 
-      <DisplayPersons searchChars={searchChars} persons={persons}/>
+      <DisplayPersons searchChars={searchChars} persons={persons} />
 
     </div>
   )
