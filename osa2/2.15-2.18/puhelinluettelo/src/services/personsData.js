@@ -7,6 +7,13 @@ const add = (newPerson) => {
     return request.then(response => response.data)
 }
 
+const updateNumber = (person, newNumber) => {
+    console.log(person)
+    console.log(newNumber)
+    const newInfo = {...person, number: newNumber}
+    axios.put(baseUrl+'/'+person.id, newInfo)
+}
+
 const deleteContact = (person) => {
     console.log(person)
     if (window.confirm(`Delete ${person.name}?`)) {
@@ -15,4 +22,4 @@ const deleteContact = (person) => {
     }
 }
 
-export default {add, deleteContact}
+export default {add, deleteContact, updateNumber}

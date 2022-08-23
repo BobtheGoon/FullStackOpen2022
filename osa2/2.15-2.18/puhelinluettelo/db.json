@@ -19,6 +19,16 @@
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
       "id": 4
+    },
+    {
+      "name": "Jarno Helsten",
+      "number": "040-123456",
+      "id": 6
+    },
+    {
+      "name": "Jukka Palmu",
+      "number": "040-123456",
+      "id": 7
     }
   ]
 }
