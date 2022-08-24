@@ -8,7 +8,6 @@ const add = (newPerson) => {
 }
 
 const updateNumber = (person, newNumber) => {
-    console.log(person)
     console.log(newNumber)
     const newInfo = {...person, number: newNumber}
     axios.put(baseUrl+'/'+person.id, newInfo)
@@ -17,8 +16,9 @@ const updateNumber = (person, newNumber) => {
 const deleteContact = (person) => {
     console.log(person)
     if (window.confirm(`Delete ${person.name}?`)) {
-        axios.delete(baseUrl+'/'+person.id)
-        window.location.reload()
+        const request = axios.delete(baseUrl+'/'+person.id)
+                        .catch(error => {console.log(`Information on ${error} has already been removed from the server`)})
+        //window.location.reload()
     }
 }
 
