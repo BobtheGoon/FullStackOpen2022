@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
 import './index.css'
 import personService from './services/personsData'
@@ -18,12 +17,10 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
-      })
-  }, [])
+    personService
+      .getAll()
+      .then(initialPersons => setPersons(initialPersons))
+    }, [])
 
 
   const addPerson = (e) => {
