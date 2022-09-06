@@ -23,7 +23,7 @@ const deleteContact = (person) => {
     if (window.confirm(`Delete ${person.name}?`)) {
         const request = axios.delete(baseUrl+'/'+person.id)
                         .catch(error => {console.log(`Information on ${error} has already been removed from the server`)})
-        //window.location.reload()
+        window.location.reload()
     }
 }
 

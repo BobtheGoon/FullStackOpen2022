@@ -1,4 +1,4 @@
-import personService from '../services/personsData'
+import personService from '../services/personService'
 
 const Persons = ({persons}) => {
     const deleteButton = (person) => <button type='button' onClick={() => personService.deleteContact(person)}>delete</button>

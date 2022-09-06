@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import './index.css'
-import personService from './services/personsData'
+import personService from './services/personService'
 
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
@@ -52,13 +52,29 @@ const App = () => {
         setPersons(persons.concat(returnedPerson))
         setNewName('')
         setNumber('')
-        }
-      )
+        setErrorMessage(`Added ${newPerson.name}`)
+        setTimeout(() => {
+          setErrorMessage(null)
+          }, 5000)
+          }
+        )
 
-      setErrorMessage(`Added ${newPerson.name}`)
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+      .catch(error => {
+        if (error.response.data.error) {
+          setErrorMessage(error.response.data.error)
+          setTimeout(() => {
+            setErrorMessage(null)
+            }, 5000) 
+          }
+
+        else if (error.response) {
+          setErrorMessage('Name or number is not of required length')
+          setTimeout(() => {
+            setErrorMessage(null)
+            }, 5000) 
+          }
+          }
+        )
   }
 
 
